@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>背景</title>
+	<style>
+	div {
+		width: 200px;
+		height: 150px;
+		border: 1px solid red;
+		display: inline-block;
+	}
+	span {
+		display: block;
+	}
+	</style>
+</head>
+<body>
+	<span>background:[图片地址] [定位] [是否重复] [是否固定背景] [原点] [向外裁剪的区域] [背景颜色] </span>
+	<span>background: url('') position size repeat attachment origin clip color</span>
+	<span>background-image</span>
+	<span>background-position</span>
+	<span>background-size 背景图片大小，建议不写入 background 中</span>
+	<span>attachment</span>
+	<span>background-origin 值 padding-box[默认，不理会padding，从 box 开始] border-box[从border开始] content-box[从内容开始，含 padding]</span>
+	<span>background-clip</span>
+	<span>background-color</span>
+	<div style="background-image: url('images/img_01.png');"></div>
+	<div style="background-image: url('images/img_01.png'); background-repeat: no-repeat;"></div>
+	<div style="background: url('images/img_01.png') no-repeat;"></div>
+	<div style="background: url('images/img_01.png') 10px 10px no-repeat; background-size: 100px 50px;"></div>
+	<div style="background: url('images/img_01.png') 10px 10px no-repeat green;"></div>
+	<div style="background: url('images/img_01.png') no-repeat; padding-left: 10px; border-width: 4px;"></div>
+	<div style="background: url('images/img_01.png') no-repeat padding-box; padding-left: 10px; border-width: 4px;"></div>
+	<div style="background: url('images/img_01.png') no-repeat content-box; padding-left: 10px; border-width: 4px;"></div>
+	<div style="background: url('images/img_01.png') no-repeat border-box; padding-left: 10px; border-width: 4px;"></div>
+	<div style="background: url('images/img_01.png') no-repeat border-box; padding-left: 10px; border-width: 4px;"></div>
+</body>
+</html>

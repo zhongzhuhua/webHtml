@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>变换</title>
+</head>
+<body>
+	<style>
+	body >div {
+		width: 300px;
+		height: 100px;
+		border: 1px solid blue;
+		margin-right: 50px;
+		margin-bottom: 50px;
+		display: inline-block;
+		float: left;
+	}
+
+	body >div >div {
+		font-size: 13px;
+		width: 100%;
+		height: 100%;
+		background-color: #ccc;
+		opacity: .9;
+	}
+
+	/*
+	 * -moz- 兼容火狐低版本
+	 * -ms- 兼容 ie 低版本
+	 * -webkit- 兼容其他常见浏览器低版本
+	 */
+
+	/* 位移 */
+	.translate {
+		transform: translate(10px, 8px);
+		-webkit-transform: translate(10px, 8px);
+		-ms-transform: translate(10px, 8px);
+		-moz-transform: translate(10px, 8px);
+	}
+
+	/* 缩放 */
+	.scale {
+		transform: scale(.9);
+		-webkit-transform: scale(.9);
+	}
+
+	/* 旋转 */
+	.rotate {
+		transform: rotate(5deg);
+		-webkit-transform: rotate(5deg);
+	}
+
+	/* 扭曲 */
+	.skew {
+		transform: skew(10deg, 0);
+		-webkit-transform: skew(10deg, 0);
+	}
+	.skew2 {
+		transform: skew(0, 10deg);
+		-webkit-transform: skew(0, 10deg);
+	}
+	</style>
+	<div>
+		<div class="translate">
+			transform: translate(10px, 8px) <br>
+			向右移动10px，向下移动 8px；<br>
+			参数也可以是百分比
+		</div>
+	</div>
+	<div>
+		<div class="scale">
+			transform: scale(.9) <br>
+		  大小 = 原大小 * 0.9 倍
+		</div>
+	</div>
+	<div>
+		<div class="rotate">
+			transform: rotate(5deg) <br>
+			顺时针旋转5°
+		</div>
+	</div>
+	<div>
+		<div class="skew">
+			transform: transform: skew(10deg, 0) <br>
+			以中心点逆时针向左推10°
+		</div>
+	</div>
+	<div>
+		<div class="skew2">
+			transform: skew(0, 10deg) <br>
+			以中心点顺时针向上推10°
+		</div>
+	</div>
+	<style>
+	.transform-origin {
+		transform-origin: 0 0;
+		-webkit-transform-origin: 0 0;
+		transform: rotate(10deg);
+		-webkit-transform: rotate(10deg);
+	}
+	</style>
+	<div>
+		<div class="transform-origin">
+			transform-origin，用于指定 transform 变换原点 <br>
+			transform-origin: 0 0; <br>
+			transform: rotate(10deg);
+		</div>
+	</div>
+</body>
+</html>

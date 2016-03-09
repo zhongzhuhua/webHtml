@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>动画</title>
+</head>
+<body>
+	<style>
+	body >div {
+		width: 300px;
+		height: 100px;
+		border: 1px solid blue;
+		margin-right: 50px;
+		margin-bottom: 50px;
+		display: inline-block;
+		float: left;
+	}
+
+	body >div >div {
+		font-size: 13px;
+		width: 100%;
+		height: 100%;
+	}
+
+	/* 
+	 * 使用 @keyframes animationName {  }定义动画
+	 * {  这里定义动画内容  }
+	 * {
+	   进度(int%) {
+				css 变化
+	   }
+	   ....
+	 }
+	 */
+	@keyframes shows {
+		0% {
+			transform: translate(0);
+			opacity: 0;
+		}
+
+		50% {
+			transform: translate(30px);
+			opacity: 1;
+		}
+
+		70% {
+			transform: translate(35px);
+			opacity: 1;
+		}
+
+		100% {
+			transform: translate(60px);
+			opacity: .5;
+		}
+	}
+
+	@-webkit-keyframes shows {
+		0% {
+			-webkit-transform: translate(0);
+			opacity: 0;
+		}
+
+		50% {
+			-webkit-transform: translate(30px);
+			opacity: 1;
+		}
+
+		70% {
+			-webkit-transform: translate(35px);
+			opacity: 1;
+		}
+
+		100% {
+			-webkit-transform: translate(60px);
+			opacity: .5;
+		}
+	}
+
+	/* infinite 无限循环，去掉默认一次 */
+	.animation-shows {
+		animation: shows 2s ease-out .5s infinite;
+		-webkit-animation: shows 2s ease-out .5s infinite;
+	}
+	</style>
+
+	<span>keyframes 自定义动画</span><br>
+	<div>
+		<div class="animation-shows">animation</div>
+	</div>
+</body>
+</html>

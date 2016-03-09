@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Media适应屏幕设计</title>
+	<style>
+	#text {
+		color: blue;
+	}
+
+	/* 使用 @media screen 来规范 屏幕分辨率 */
+	@media screen and (max-width: 400px) {
+		#text { 
+			color: red;
+		}
+	}
+
+	@media screen and (min-width: 401px) and (max-width: 600px) {
+		#text {
+			color: green;
+		}
+	}
+
+	@media screen and (min-width: 601px) and (max-width: 800px) {
+		#text {
+			color: #f80;
+		}
+	}
+
+	/* 使用 @media all 来规范 body 样式 */
+	@media all and (max-width: 400px) {
+		div {
+			color: red;
+		}
+	}
+	</style>
+</head>
+<body>
+	<span id="text">测试media，请把窗口缩来缩去，看看我的文字颜色！</span>
+	<div>测试media，请把窗口缩来缩去，看看我的文字颜色！</div>
+</body>
+</html> 

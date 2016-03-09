@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>阴影</title>
+  <style>
+  div {
+    width: 500px;
+    height: 40px;
+    margin-bottom: 20px;
+    padding-left: 10px;
+    padding-top: 5px;
+    border: 1px solid red;
+  }
+  </style>
+</head>
+
+<body>
+  <span>box-shadow:[阴影左右位移] [阴影垂直位移] [模糊宽度] [阴影向外扩散宽度，不超过对应的左右和垂直位移] [阴影颜色] [阴影渲染模式]</span>
+  <br>
+  <span>渲染模式值：inset/outset，默认 outset[外阴影]</span>
+  <br>
+  <div style="box-shadow: 5px 3px red;">box-shadow: 5px 3px red;</div>
+  <div style="box-shadow: 5px 5px 3px blue;">box-shadow: 5px 5px 3px blue;</div>
+  <div style="box-shadow: 5px 5px 3px 4px blue;">box-shadow: 5px 5px 3px 1px blue;</div>
+  <div style="box-shadow: 5px 5px 3px blue inset;">box-shadow: 5px 5px 3px blue;</div>
+</body>
+
+</html>

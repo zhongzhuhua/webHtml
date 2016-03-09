@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>选择器</title>
+</head>
+<body>
+	<style>
+	/* [attr='val'] attr属性值等于val的 */
+	div[title='attr'] {
+		color: red;
+	}
+
+	/* [attr] 含有属性attr的 */
+	div[name] {
+		color: green;
+	}
+
+	/* [attr^='val'] attr属性值开头为val的 */
+	div[title^='start'] {
+		color: blue;
+	}
+
+	/* [attr$='val'] attr属性值结尾为val的 */
+	div[title$='end'] {
+		color: #f80;
+	}
+
+	/* [attr|='val'] attr属性值出现val-的 */
+	</style>
+	<div name>我是div</div>
+	<div title="attr">我是div</div>
+	<div>我是div</div>
+	<div title="startTest">我是div</div>
+	<div title="teststart">我是div</div>
+	<div title="testend">我是div</div>
+	<div title="endTest">我是div</div>
+	<style>
+	#child {
+		list-style: none;
+	}
+	#child li:first-child {
+		color: red;
+	}
+	#child li:last-child {
+		color: blue;
+	}
+	</style>
+	<ul id='child'>
+		<li>第一个</li>
+		<li>我是li</li>
+		<li>我是li</li>
+		<li>我是li</li>
+		<li>我是li</li>
+		<li>我是li</li>
+		<li>最后一个</li>
+	</ul>
+	<style>
+	#only span:only-child {
+		color: red;
+	}
+	#only2 div:only-child {
+		color: blue;
+	}
+	</style>
+	<div id="only">
+		<span>only-child</span>
+	</div>
+	<div id="only2">
+		<div>not only-child</div>
+		<div>not only-child</div>
+	</div>
+	<style>
+	#nth div:nth-child(2n) {
+		color: red;
+	}
+	#nth div:nth-child(2n-1) {
+		color: blue;
+	}
+	</style>
+	<div id="nth">
+		<div>nth-child</div>
+		<div>nth-child</div>
+		<div>nth-child</div>
+		<div>nth-child</div>
+	</div>
+	
+	<style>
+	#empty div:empty {
+		border: 1px solid blue;
+		height: 20px;
+	}
+	</style>
+	<br>
+	<div id="empty">
+		<div>第二个节点是空节点，测试:empty</div>
+		<div></div>
+		<div>呵呵</div>
+	</div>
+
+	<br>
+	<style>
+	#checked input:checked + span {
+		background-color: red;
+		color: #fff;
+	}
+	</style>
+	<div id="checked">
+		<div>input:checked 被选中的；*:disabled 不可用的；enabled 可用的； a:target 锚点链接后的位置对应的样式</div>
+		<input type="checkbox"> <span>我</span>
+		<input type="checkbox"> <span>你</span>
+	</div>
+</body>
+</html>

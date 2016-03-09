@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>简单渐变动画</title>
+</head>
+<body>
+	<style>
+		body >div {
+			width: 500px;
+			height: 160px;
+			margin-bottom: 20px;
+			margin-right: 20px;
+			display: inline-block;
+			float: left;
+		}
+
+		.transition-bgcolor {
+			background-color: #ccc;
+			/* 
+			 * ease-in 由慢到快
+			 * ease-out 由快到慢
+			 * ease 平滑过度
+			 * linear 线性过度
+			 */
+			transition: background-color .5s ease-in;
+		}
+
+		.transition-bgcolor:hover {
+			background-color: #f80;
+		}
+	</style>
+	<div class="transition-bgcolor">
+		transition: property duration timing-functiion delay<br>
+		多种属性用 , 隔开 <br>
+		property [css属性/all(全部属性)] <br>
+		duration [执行的时间，以 s 为单位] <br>
+		timing-function [特效 linear/ease/ease-in/ease-out/..] <br>
+		delay [延迟加载时间，以 s 为单位]
+	</div>
+</body>
+</html>

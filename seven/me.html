@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>慕课七夕主题</title>
+  <style>
+  body,
+  div {
+    margin: 0;
+    padding: 0;
+  }
+  
+  ul,
+  li {
+    list-style: none;
+  }
+  
+  #content {
+    position: absolute;
+    display: none;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  
+  .map {
+    height: 100%;
+  }
+  
+  .map >.content-wrap {
+    float: left;
+    height: 100%;
+  }
+  /* 背景 */
+  
+  .content-wrap .wrap {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-color: #ccc;
+  }
+  /* 场景一 */
+  
+  .content-wrap1 >div:nth-child(1) {
+    height: 71.6%;
+    background-image: url("http://img.mukewang.com/55addf6900019d8f14410645.png");
+  }
+  
+  .content-wrap1 >div:nth-child(2) {
+    height: 13.1%;
+    background-image: url("http://img.mukewang.com/55addf800001ff2e14410118.png");
+  }
+  
+  .content-wrap1 >div:nth-child(3) {
+    height: 15.3%;
+    background-image: url("http://img.mukewang.com/55addfcb000189b314410138.png");
+  }
+  
+  .content-wrap1 .sun {
+    position: absolute;
+    z-index: 1;
+    top: -30px;
+    height: 201px;
+    width: 201px;
+    right: 40%;
+    background: url("http://img.mukewang.com/55ade004000106c202010201.png") no-repeat;
+  }
+  
+  .content-wrap1 .cloud {
+    position: absolute;
+    width: 100%;
+    top: 0;
+  }
+  
+  .content-wrap1 .cloud div {
+    position: absolute;
+    z-index: 2;
+    background-size: 100% 100%;
+  }
+  
+  .content-wrap1 .cloud1 {
+    top: 124px;
+    width: 161px;
+    height: 101px;
+    left: 20%;
+    background: url("http://img.mukewang.com/55addfde0001aec501810101.png") no-repeat;
+  }
+  
+  .content-wrap1 .cloud2 {
+    top: 30px;
+    height: 112px;
+    width: 241px;
+    right: 30%;
+    background: url("http://img.mukewang.com/55addff500016df503010140.png") no-repeat;
+  }
+  /* 场景二 */
+  
+  .content-wrap2 >div:nth-child(1) {
+    background-image: url("http://img.mukewang.com/55ade06f00015a0d14410901.png");
+  }
+  /* 场景二-鸟 */
+  
+  .bird {
+    min-width: 91px;
+    min-height: 71px;
+    top: 10%;
+    position: absolute;
+    z-index: 10;
+    right: -91px;
+    background: url("http://img.mukewang.com/55ade1700001b38302730071.png") -182px 0px no-repeat;
+  }
+  /* 场景二-商店 */
+  
+  .content-wrap2 .shop {
+    width: 39.5%;
+    height: 35.5%;
+    position: absolute;
+    left: 29%;
+    top: 36.5%;
+  }
+  
+  .content-wrap2 .door {
+    position: absolute;
+    width: 32%;
+    height: 100%;
+    top: 32%;
+    height: 68%;
+    overflow: hidden;
+    left: 58.5%;
+  }
+  
+  .content-wrap2 .door-left,
+  .content-wrap2 .door-right {
+    width: 50%;
+    height: 100%;
+    position: absolute;
+  }
+  
+  .content-wrap2 .door-left {
+    left: 0%;
+    background: url("http://img.mukewang.com/55ade1140001050d00910231.png");
+    background-size: 100% 100%;
+  }
+  
+  .content-wrap2 .door-right {
+    left: 50%;
+    background: url("http://img.mukewang.com/55ade12100019f5b00910231.png");
+    background-size: 100% 100%;
+  }
+  /* 场景三 */
+  
+  .content-wrap3 .wrap >div:nth-child(1) {
+    position: relative;
+    height: 71.6%;
+    background-size: 100% 100%;
+    background-image: url("http://img.mukewang.com/55ade19b0001d92c14410645.png");
+  }
+  
+  .content-wrap3 .wrap >div:nth-child(2) {
+    height: 13.1%;
+    background-size: 100% 100%;
+    background-image: url("http://img.mukewang.com/55ade1b3000135c114410118.png");
+  }
+  
+  .content-wrap3 .wrap >div:nth-child(3) {
+    position: relative;
+    height: 15.3%;
+    background-size: 100% 100%;
+    background-image: url("http://img.mukewang.com/55ade1c30001db5d14410138.png");
+  }
+  /* 场景三-波浪 */
+  /*波浪水布局*/
+  
+  .water {
+    position: absolute;
+    width: 33.33%;
+    height: 100%;
+    left: 33.33%;
+  }
+  
+  .water_1,
+  .water_2,
+  .water_3,
+  .water_4 {
+    width: 100%;
+    position: absolute;
+    height: 50%;
+    -webkit-animation-name: shake;
+    -webkit-animation-duration: 40s;
+    -webkit-animation-direction: alternate;
+    -webkit-anination-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+  }
+  
+  .water_1 {
+    width: 131px;
+    height: 15px;
+    top: 13%;
+    left: 35%;
+    background: url(http://img.mukewang.com/55ade1e000010f2908540027.png) -261px -0px no-repeat;
+  }
+  
+  .water_2 {
+    width: 161px;
+    height: 9px;
+    top: 30%;
+    left: 45%;
+    background: url(http://img.mukewang.com/55ade1e000010f2908540027.png) -693px -0px no-repeat;
+    -webkit-animation-delay: 2s;
+  }
+  
+  .water_3 {
+    width: 261px;
+    height: 29px;
+    top: 50%;
+    left: 15%;
+    background: url(http://img.mukewang.com/55ade1e000010f2908540027.png) -0px -0px no-repeat;
+    -webkit-animation-delay: 1s;
+  }
+  
+  .water_4 {
+    width: 301px;
+    height: 12px;
+    top: 75%;
+    left: 26%;
+    background: url(http://img.mukewang.com/55ade1e000010f2908540027.png) -392px -0px no-repeat;
+    -webkit-animation-delay: 3s;
+  }
+  
+  @-webkit-keyframes shake {
+    0%,
+    100% {
+      -webkit-transform: translate3d(0, 0, 0);
+    }
+    10%,
+    30%,
+    50%,
+    70%,
+    90% {
+      -webkit-transform: translate3d(-30px, 0px, 0);
+    }
+    20%,
+    40%,
+    60%,
+    80% {
+      -webkit-transform: translate3d(30px, 0px, 0);
+    }
+  }
+  /* 场景三-星星 */
+  
+  .stars {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+  }
+  
+  .stars > li {
+    position: absolute;
+    width: 30px;
+    height: 31px;
+    background-image: url("http://img.mukewang.com/55ade1fe00016b8900300031.png");
+    -webkit-animation-name: flash;
+    -webkit-animation-timing-function: ease-in-out;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-direction: alternate;
+  }
+  
+  .stars1 {
+    top: 20%;
+    left: 30%;
+    -webkit-animation-duration: 5s;
+  }
+  
+  .stars2 {
+    top: 15%;
+    left: 20%;
+    -webkit-animation-duration: 20s;
+  }
+  
+  .stars3 {
+    top: 25%;
+    left: 85%;
+    -webkit-animation-duration: 15s;
+  }
+  
+  .stars4 {
+    top: 30%;
+    left: 70%;
+    -webkit-animation-duration: 25s;
+  }
+  
+  .stars5 {
+    top: 25%;
+    left: 20%;
+    -webkit-animation-duration: 30s;
+  }
+  
+  .stars6 {
+    top: 10%;
+    left: 65%;
+    -webkit-animation-duration: 10s;
+  }
+  
+  @-webkit-keyframes flash {
+    0%,
+    50%,
+    100% {
+      opacity: 1;
+    }
+    25%,
+    75% {
+      opacity: 0;
+    }
+  }
+  
+  @-moz-keyframes flash {
+    0%,
+    50%,
+    100% {
+      opacity: 1;
+    }
+    25%,
+    75% {
+      opacity: 0;
+    }
+  }
+  /* 场景三-雪花 */
+  
+  .snowflake {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+  }
+  
+  .snowRoll {
+    position: absolute;
+    opacity: 0;
+    -webkit-animation-name: mysnow;
+    -webkit-animation-duration: 20s;
+    height: 80px;
+  }
+  
+  @-webkit-keyframes mysnow {
+    0% {
+      bottom: 100%;
+    }
+    50% {
+      -webkit-transform: rotate(1080deg);
+    }
+    100% {
+      -webkit-transform: rotate(0deg) translate3d(50px, 50px, 50px);
+    }
+  }
+  /* 男孩 */
+  
+  .boy {
+    position: absolute;
+    left: 0;
+    bottom: 20%;
+    width: 151px;
+    height: 291px;
+    background: url("http://img.mukewang.com/55ade248000198ae10550582.png") -151px -291px no-repeat;
+  }
+  
+  .boy-slow {
+    -webkit-animation: person-slow step-start 950ms infinite;
+  }
+  
+  .boy-flower-slow {
+    -webkit-animation: person-flower-slow step-start 950ms infinite;
+  }
+  
+  .boy-pause {
+    animation-play-state: paused;
+    -webkit-animation-play-state: paused;
+  }
+  /* 男孩走路动画 */
+  
+  @-webkit-keyframes person-slow {
+    0% {
+      background-position: -0px -291px;
+    }
+    25% {
+      background-position: -602px -0px;
+    }
+    50% {
+      background-position: -302px -291px;
+    }
+    75% {
+      background-position: -151px -291px;
+    }
+    100% {
+      background-position: -0px -291px;
+    }
+  }
+  /* 男孩带花走路动画 */
+  
+  @-webkit-keyframes person-flower-slow {
+    0% {
+      background-position: -453px -0px;
+    }
+    25% {
+      background-position: -904px -0px;
+    }
+    50% {
+      background-position: -451px -0px;
+    }
+    75% {
+      background-position: -753px -0px;
+    }
+    100% {
+      background-position: -300px -0px;
+    }
+  }
+  /*小女孩*/
+  
+  .girl {
+    position: absolute;
+    left: 50%;
+    bottom: 30.6%;
+    width: 151px;
+    height: 291px;
+    background: url("http://img.mukewang.com/55ade30d000100dc10570291.png") -755px -0px no-repeat;
+  }
+  /* 按钮 */
+  
+  button {
+    width: 100px;
+    height: 50px;
+  }
+  
+  .button {
+    position: absolute;
+    bottom: 0;
+  }
+  </style>
+</head>
+
+<body>
+  <div id="content">
+    <div class="map">
+      <!-- 场景一 -->
+      <div class="content-wrap content-wrap1">
+        <div class="wrap">
+	        <!-- 云 -->
+	        <div class="cloud">
+	          <div class="cloud1"></div>
+	          <div class="cloud2"></div>
+	        </div>
+	        <!-- 太阳 -->
+	        <div class="sun"></div>
+        </div>
+        <div class="wrap"></div>
+        <div class="wrap"></div>
+      </div>
+      <!-- 场景二 -->
+      <div class="content-wrap content-wrap2">
+        <div class="wrap">
+          <!-- 商店 -->
+          <div class="shop">
+            <div class="door">
+              <div class="door-left"></div>
+              <div class="door-right"></div>
+            </div>
+            <!-- 灯 -->
+            <div class="lamp"></div>
+          </div>
+          <!-- 鸟 -->
+          <div class="bird" id="bird"></div>
+        </div>
+      </div>
+      <!-- 场景三 -->
+      <div class="content-wrap content-wrap3">
+        <div class="wrap">
+          <div>
+            <!-- 星星 -->
+            <ul class="stars">
+              <li class="stars1"></li>
+              <li class="stars2"></li>
+              <li class="stars3"></li>
+              <li class="stars4"></li>
+              <li class="stars5"></li>
+              <li class="stars6"></li>
+            </ul>
+          </div>
+          <div></div>
+          <div>
+            <!-- 水波 -->
+            <div class="bridge-bottom">
+              <div class="water">
+                <div id="water1" class="water_1"></div>
+                <div id="water2" class="water_2"></div>
+                <div id="water3" class="water_3"></div>
+                <div id="water4" class="water_4"></div>
+              </div>
+            </div>
+          </div>
+          <div class="girl"></div>
+		      <!-- 飘花 -->
+		      <div class="snowflake" id="snowflake"></div>
+        </div>
+      </div>
+    </div>
+    <div class="boy boy-slow" id="boy">
+    </div>
+    <div class="button" style="display: none;">
+      <button id="btnRun">开始</button>
+    </div>
+  </div>
+  <script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+  <script>
+  var $content = $('#content');
+  var $boy = $('#boy');
+  var $btnRun = $('#btnRun');
+  var swipe = Swipe($content);
+  var boyWalk = BoyWalk($content, $boy);
+  var $cloud = $('.cloud >div');
+  var $bird = $('#bird');
+  var door = doorControl();
+  var map = mapControl(swipe);
+  var snow = Snow($content, $('#snowflake'));
+
+  function begin() {
+    // 云特技
+    $cloud.css({
+      'transform': 'translate(-50px, 0)',
+      'transition': 'all 10000ms linear'
+    });
+
+    // 第一次走路
+    var mapRunTime = boyWalk.run(25, 2000);
+
+    setTimeout(runTwo, mapRunTime);
+  };
+
+  // 第二次走路
+  function runTwo() {
+    var mapRunTime = boyWalk.run(54);
+    map.change(1, mapRunTime);
+    setTimeout(openDoor, mapRunTime);
+  };
+
+  // 场景二，开门 -- 进商店
+  function openDoor() {
+    var mapRunTime = 1500;
+    boyWalk.stop();
+    door.open(mapRunTime);
+    setTimeout(inDoor, mapRunTime + 1000);
+  };
+
+  // 场景二，进商店
+  function inDoor() {
+    var mapRunTime = 2500;
+    boyWalk.start();
+
+    var _left = ($boy.offset().left + 10) + 'px';
+    $boy.css({
+      'transform': 'translate(' + _left + ',0px) scale(.5)',
+      'transform-origin': '0 30px',
+      'opacity': '0',
+      'transition': 'all ' + (mapRunTime + 'ms') + ' linear'
+    });
+
+    flyBird();
+    setTimeout(outDoor, mapRunTime);
+  };
+
+  // 场景二，出商店 -- 关门 -- 换场景
+  function outDoor() {
+    var mapRunTime = 1500;
+    var nextTime = 3000;
+
+
+    setTimeout(function() {
+      $boy.addClass('boy-flower-slow');
+      var _left = ($boy.offset().left - 30) + 'px';
+      $boy.css({
+        'transform': 'scale(1) translate(' + _left + ',0px)',
+        'transform-origin': '0 30px',
+        'opacity': '1',
+        'transition': 'all ' + nextTime + 'ms linear'
+      });
+
+      // 切换 map3
+      setTimeout(function() {
+        boyWalk.stop();
+        door.close(mapRunTime);
+        setTimeout(runToGirl, nextTime);
+      }, nextTime);
+    }, mapRunTime);
+  };
+
+  // 场景二，飞鸟
+  function flyBird() {
+    $bird.css({
+      'transform': 'translate(-' + swipe.contentWidth + 'px, 0)',
+      'transition': 'all 15000ms linear'
+    });
+  };
+
+  // 切换场景三
+  function runToGirl() {
+    var mapTime = 3000;
+    var runTime = 3000;
+    boyWalk.start();
+    boyWalk.run(15, runTime);
+    map.change(2, mapTime);
+
+    setTimeout(function() {
+      boyWalk.run({
+        x: 50,
+        y: 11
+      }, runTime, true);
+
+      setTimeout(function() {
+        boyWalk.stop();
+        snow.run();
+      }, runTime);
+    }, runTime);
+  };
+
+  // 内容大小固定
+  function Swipe($content) {
+    var contentWidth = $content.width();
+    var $map = $content.find('.map:eq(0)');
+    var $list = $map.find('.content-wrap');
+    var listLen = $list.length;
+
+    $map.css('width', (contentWidth * listLen));
+    $list.css('width', contentWidth);
+
+    setTimeout(function() {
+      $content.show();
+      setTimeout(begin, 1000);
+    }, 300);
+
+    return {
+      $map: $map,
+      $list: $list,
+      contentWidth: contentWidth
+    };
+  };
+
+
+  // 男孩走路
+  function BoyWalk($content, $boy, runTime) {
+    var contentWidth = parseInt($content.width(), 10);
+    var contentHeight = parseInt($content.height(), 10);
+    var runWidth = contentWidth;
+    var runHeight = contentHeight;
+
+    /* 走路
+     * param x，如果 x 是 int 走到总路程的 * x / 100 的位置，如果是 json 则是 {x: int, y: int}
+     */
+    function run(x, runTime, minusBoy) {
+      runTime = runTime == undefined ? 3000 : runTime;
+      var _t = runTime + 'ms';
+      var _w = 0;
+      var _h = 0;
+
+      if (typeof x == 'number') {
+        _w = ((runWidth * x) / 100);
+      } else {
+        _w = ((runWidth * x.x) / 100);
+        _h = ((runHeight * x.y) / 100) * -1;
+      }
+
+      if (minusBoy) {
+        _w = _w - $boy.width();
+      }
+
+      $boy.css({
+        'transform': 'translate(' + _w + 'px, ' + _h + 'px)',
+        'transition': 'all ' + _t + ' linear'
+      });
+
+      return runTime;
+    };
+
+    // 暂停
+    function pause() {
+      var transform = $boy.css('transform');
+      $boy.css({
+        'transform': transform,
+        'transition-duration': '0'
+      });
+    };
+
+    // 开始脚步
+    function start() {
+      $boy.removeClass('boy-pause');
+    };
+
+    // 暂停脚步
+    function stop() {
+      $boy.addClass('boy-pause');
+    };
+
+    return {
+      run: run,
+      pause: pause,
+      start: start,
+      stop: stop
+    };
+  };
+
+
+  // 门
+  function doorControl() {
+    var $left = $('.door-left');
+    var $right = $('.door-right');
+
+    function open(mapRunTime) {
+      $left.animate({
+        left: '-50%'
+      }, mapRunTime);
+      $right.animate({
+        'left': '100%'
+      }, mapRunTime);
+    };
+
+    function close(mapRunTime) {
+      $left.animate({
+        left: '0%'
+      }, mapRunTime);
+      $right.animate({
+        'left': '50%'
+      }, mapRunTime);
+    };
+    return {
+      open: open,
+      close: close
+    };
+  };
+
+  // 场景
+  function mapControl(swipe) {
+    // 下标从 0 开始
+    function change(index, mapRunTime) {
+      swipe.$map.css({
+        'transform': 'translate(' + ('-' + (swipe.contentWidth * index) + 'px') + ', 0px)',
+        'transition': 'all ' + (mapRunTime + 'ms') + ' linear'
+      });
+    };
+
+    return {
+      change: change
+    };
+  };
+
+
+
+  // 雪花
+  function Snow($content, $flakeContainer) {
+    var snowflakeURl = [
+      'http://img.mukewang.com/55adde120001d34e00410041.png',
+      'http://img.mukewang.com/55adde2a0001a91d00410041.png',
+      'http://img.mukewang.com/55adde5500013b2500400041.png',
+      'http://img.mukewang.com/55adde62000161c100410041.png',
+      'http://img.mukewang.com/55adde7f0001433000410041.png',
+      'http://img.mukewang.com/55addee7000117b500400041.png'
+    ];
+
+    // 随机六张图
+    function getImagesName() {
+      return snowflakeURl[[Math.floor(Math.random() * 6)]];
+    }
+
+    // 创建一个雪花元素
+    function createSnowBox() {
+      var url = getImagesName();
+      return $('<div class="snowbox" />').css({
+        'width': 41,
+        'height': 41,
+        'position': 'absolute',
+        'backgroundSize': 'cover',
+        'zIndex': 100000,
+        'top': '-41px',
+        'backgroundImage': 'url(' + url + ')'
+      }).addClass('snowRoll');
+    }
+    // 飘雪
+    function run() {
+      var visualWidth = $content.width();
+      var visualHeight = $content.height();
+
+      // 开始飘花
+      setInterval(function() {
+        // 运动的轨迹
+        var startPositionLeft = Math.random() * visualWidth - 100,
+          startOpacity = 1,
+          endPositionTop = visualHeight - 40,
+          endPositionLeft = startPositionLeft - 100 + Math.random() * 500,
+          duration = visualHeight * 10 + Math.random() * 5000;
+
+        // 随机透明度，不小于0.5
+        var randomStart = Math.random();
+        randomStart = randomStart < 0.5 ? startOpacity : randomStart;
+
+        // 创建一个雪花
+        var $flake = createSnowBox();
+
+        // 设计起点位置
+        $flake.css({
+          left: startPositionLeft,
+          opacity: randomStart
+        });
+
+        // 加入到容器
+        $flakeContainer.append($flake);
+
+        // 开始执行动画
+        $flake.animate({
+          top: endPositionTop,
+          left: endPositionLeft,
+          opacity: 0.7
+        }, duration, function() {
+          $flake.remove();
+        });
+      }, 200);
+
+    };
+
+    return {
+      run: run
+    };
+  };
+  </script>
+</body>
+
+</html>

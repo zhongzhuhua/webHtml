@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>文本样式</title>
+</head>
+<body>
+	<div>
+		<span>hoW arE you</span>
+	</div>
+	<div>
+		<span>[text-transform: capitalize] 结果：</span><span style="text-transform: capitalize;">hoW arE you</span>
+	</div>
+	<div>
+		<span>[text-transform: uppercase]结果：</span><span style="text-transform: uppercase;">hoW arE you</span>
+	</div>
+	<div>
+		<span>[text-transform: lowercase]结果：</span><span style="text-transform: lowercase;">hoW arE you</span>
+	</div>
+
+	<style>
+	.div1 {
+		width: 150px;
+		border: 1px solid red;
+		margin-bottom: 5px;
+	}
+	</style>
+	<br>
+	<div>white-space: 默认 normal；pre 所有空格会体现出来；pre-line 所有空格体现出来，并且不换行</div>
+	<div>
+		pre 所有空格体现出来，不换行
+	</div>
+	<div>
+		pre-wrap 所有空格体现出来，换行
+	</div>
+	<div>
+		pre-line 只留一个空格，换行
+	</div>
+	<div>
+		nowrap 只留一个空格，不换行
+	</div>
+	<div class="div1" style="white-space: normal;">轻轻地     正如aaaaaaaaaaaaaaaaaaa</div>
+	<div class="div1" style="white-space: pre;">轻轻地     正如aaaaaaaaaaaaaaaaaaa</div>
+	<div class="div1" style="white-space: pre-wrap;">轻轻地     正如aaaaaaaaaaaaaaaaaaa</div>
+	<div class="div1" style="white-space: pre-line;">轻轻地     正如aaaaaaaaaaaaaaaaaaa</div>
+	<div class="div1" style="white-space: nowrap;">轻轻地     正如aaaaaaaaaaaaaaaaaaa</div>
+
+	<br>
+	<div>
+		word-break: break-all; word-wrap: break-word; 切断英文单词
+	</div>
+	<div class="div1" style="word-break: break-all;">aaaaaaaaaaaaaaaaaaaaaa</div>
+
+	<div style="direction: rtl; unicode-bidi: bidi-override;">我是中国人！</div>
+</body>
+</html>
