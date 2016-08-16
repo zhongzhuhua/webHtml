@@ -1,21 +1,183 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>圆盘抽奖</title>
     <style>
-        html,
-        body {
-            margin: 0;
-            padding: 0;
-        }
+    html,
+    body {
+        margin: 0;
+        padding: 0;
+        text-align: center
+    }
+    
+    #circle {
+        position: absolute;
+        left: 0;
+        top: 0;
+        border-radius: 50%;
+    }
+    
+    #point {
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
     </style>
 </head>
-<body style="margin: 0 auto;">
-    <canvas id="prize" width="300px" height="300px" info="奖品转盘">抱歉！浏览器不支持。</canvas>
+
+<body style="margin-top: 100px;">
+    <div style="margin: 0 auto; width: 300px; height: 300px; position: relative; ">
+        <canvas id="circle" width="300px" height="300px" info="奖品转盘">抱歉！浏览器不支持。</canvas>
+        <canvas id="point" width="300px" height="300px" info="指针">抱歉！浏览器不支持。</canvas>
+    </div>
     <script src="http://www.jq22.com/demo/html5-canvas-choujiang20160309/js/jquery-1.11.3.min.js"></script>
     <script>
-        console.log('参考：http://www.jq22.com/demo/html5-canvas-choujiang20160309/');
+    // 控件
+    var $circle = $('#circle');
+    var domCircle = $circle.get(0);
+    var ctxCircle = domCircle.getContext('2d');
+    var $point = $('#point');
+    var domPoint = $point.get(0);
+    var ctxPoint = domPoint.getContext('2d');
+
+    // ==== 绘制大圆盘 ====
+    var colors = ['#626262', '#787878', '#dcc722', '#ff4350', 'rgba(0,0,0,0.5)'];
+
+    function drawCircle() {
+        var startAngle = 0; //扇形的开始弧度
+        var endAngle = 0; //扇形的终止弧度
+        for (var i = 0; i < 8; i++) {
+            ctxCircle.save();
+            ctxCircle.beginPath();
+            startAngle = Math.PI * (i / 4 - 1 / 8);
+            endAngle = startAngle + Math.PI * (1 / 4);
+            ctxCircle.arc(150, 150, 100, startAngle, endAngle);
+            ctxCircle.lineWidth = 120;
+            if (i % 2 == 0) {
+                ctxCircle.strokeStyle = colors[0];
+            } else {
+                ctxCircle.strokeStyle = colors[1];
+            }
+            ctxCircle.stroke();
+            ctxCircle.closePath();
+            ctxCircle.restore();
+        }
+    };
+    // ==== 绘制大圆盘 ====
+
+    // ==== 添加奖项 ====
+    var prizeValue = ['谢谢参与', '  1000  ', '  10  ', '  500  ', '  100  ', '  4999  ', '  1  ', '  20  '];
+    var prizeName = ['再接再厉', '  元  ', '  元  ', ' 淘金币 ', '  元  ', ' 淘金币 ', '  元  ', ' 淘金币 '];
+
+    function drawPrize() {
+        ctxCircle.textAlign = 'center';
+        ctxCircle.textBaseline = 'middle';
+        var step = 2 * Math.PI / 8;
+        for (var i = 0; i < 8; i++) {
+            ctxCircle.save();
+            ctxCircle.beginPath();
+            ctxCircle.translate(150, 150);
+            ctxCircle.rotate(i * step);
+            ctxCircle.font = '16px microsoft yahei';
+            ctxCircle.fillStyle = colors[2];
+            ctxCircle.fillText(prizeValue[i], 0, -115, 60);
+            ctxCircle.fillText(prizeName[i], 0, -95, 60);
+            ctxCircle.closePath();
+            ctxCircle.restore();
+        }
+    };
+    // ==== 添加奖项 ====
+
+    // ==== 中间指针 ====
+
+    function drawPoint() {
+        // 画中间透明圈圈
+        ctxPoint.beginPath();
+        ctxPoint.arc(150, 150, 70, 0, Math.PI * 2);
+        ctxPoint.fillStyle = colors[4];
+        ctxPoint.fill();
+
+        // 画中间红色圈圈
+        ctxPoint.beginPath();
+        ctxPoint.arc(150, 150, 40, 0, Math.PI * 2);
+        ctxPoint.fillStyle = colors[3];
+        ctxPoint.fill();
+
+        // 画指针
+        ctxPoint.beginPath();
+        ctxPoint.moveTo(150, 80);
+        ctxPoint.lineTo(140, 120);
+        ctxPoint.lineTo(160, 120);
+        ctxPoint.fill();
+
+        // 开始抽奖
+        ctxPoint.beginPath();
+        ctxPoint.font = '20px microsoft yahei';
+        ctxPoint.fillStyle = '#fff';
+        ctxPoint.fillText('开始', 130, 146);
+        ctxPoint.fillText('抽奖', 130, 170);
+        ctxPoint.fill();
+        ctxPoint.closePath();
+    };
+
+    // ==== 中间指针 ====
+
+    // 绑定事件
+    function bindEvent() {
+        // 抽奖
+        $point.on('click', function() {
+            runPrize();
+        });
+    };
+
+    // 抽奖
+    var angles = 0;
+    var isrun = false;
+    function runPrize() {
+        if(isrun) {
+            return;
+        }
+        console.log('run begin');
+        isrun = true;
+
+        $circle.css({
+            transition: 'transform 0s',
+            transform: 'rotate(' + angles + 'deg)'
+        });
+
+        setTimeout(function() {
+            //获取随机数
+            var num = parseInt(Math.random() * (7 - 0 + 0) + 0, 10);
+            // 最终旋转的角度
+            angles = 3960 + num * 45;
+            // 设置样式
+            $circle.css({
+                transition: 'transform 6s',
+                transform: 'rotate(' + angles + 'deg)'
+            });
+            angles = angles - 3960;
+        }, 10);
+
+        setTimeout(function() {
+            console.log('run end');
+            isrun = false;
+        }, 6100);
+    };
+
+    // 初始化
+    $(function() {
+        drawCircle();
+        drawPrize();
+        drawPoint();
+
+        bindEvent();
+    });
+    </script>
+    <script>
+    console.log('参考：http://www.jq22.com/demo/html5-canvas-choujiang20160309/');
     </script>
 </body>
+
 </html>
