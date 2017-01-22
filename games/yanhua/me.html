@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="description" content="平安金融科技">
+  <!-- 优先使用 IE 最新版本和 Chrome -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <!-- 为移动设备添加 viewport -->
+  <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+  <!-- 添加到主屏后的标题（iOS 6 新增） -->
+  <meta name="apple-mobile-web-app-title" content="平安金融科技">
+  <!-- 是否启用 WebApp 全屏模式，删除苹果默认的工具栏和菜单栏 -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <!-- 设置苹果工具栏颜色 -->
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <!-- 忽略页面中的数字识别为电话，忽略email识别 -->
+  <meta name="format-detection" content="telephone=no, email=no" />
+  <!-- Color the status bar on mobile devices -->
+  <meta name="theme-color" content="#2F3BA2">
+  <!--下面三个是清除缓存 微信浏览器缓存严重又无刷新；这个方法调试的时候很方便-->
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Cache-Control" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <style>
+  body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+  
+  .main {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+  }
+  
+  .city {
+    width: 100%;
+    position: fixed;
+    bottom: 0px;
+    z-index: 100;
+  }
+  
+  .city img {
+    height: 10em;
+    border: 0;
+  }
+  
+  #cas {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 5, 24, 1);
+  }
+  
+  #moon {
+    position: fixed;
+    width: 8em;
+    right: 1em;
+    top: 1em;
+  }
+  </style>
+  <title>放烟花</title>
+</head>
+
+<body onselectstart="return false">
+  <div id="main" class="main">
+    <canvas id='cas'>浏览器不支持canvas</canvas>
+    <div class="city"><img id="house" src="city.png" alt="" /></div>
+    <img src="moon-me.png" alt="" id="moon" />
+  </div>
+</body>
+<script>
+// 画布
+var main = document.querySelector('#main');
+var mainWidth = main.clientWidth;
+var mainHeight = main.clientHeight;
+var canvas = document.querySelector('#cas');
+var ctx = canvas.getContext('2d');
+// 多少毫秒放一个
+var onceTime = 800;
+// 初始化画布高度
+canvas.height = mainHeight;
+
+// 循环放烟花
+var lastTime = new Date();
+var bigbooms = [];
+// 烟花初始高度，暂时定在楼顶放
+var house = document.querySelector('#house');
+var boomStartHeight = canvas.height - house.height / 2;
+// 烟花爆破范围
+var boomWidth = canvas.width / 4;
+var boomHeight = canvas.height / 2;
+
+window.onload = function() {
+  animate();
+};
+
+// 执行烟花特效
+function animate() {
+  ctx.save();
+  ctx.fillStyle = 'rgba(0,5,24,0.1)';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.restore();
+
+  var newTime = new Date();
+  if (newTime - lastTime > onceTime) {
+    var random = Math.random() * 100 > 2 ? true : false;
+    var x = getRandom(canvas.width / 5, canvas.width * 4 / 5);
+    var y = getRandom(20, 100);
+    var bigboom = new Boom({
+      x: x,
+      y: y
+    });
+    bigbooms.push(bigboom);
+    lastTime = newTime;
+  }
+
+  bigbooms.forEach(function(self) {
+    var that = self;
+    if (!self.dead) {
+      self.move();
+    } else {
+      self.booms.forEach(function(self) {
+        if (!self.dead) {
+          self.moveTo();
+        } else if (self === that.booms.length - 1) {
+          bigbooms[bigbooms.indexOf(that)] = null;
+        }
+      });
+    }
+  });
+
+  setTimeout(animate, 1000 / 60);
+};
+
+/**
+ * 烟花对象
+ * @param boomArea 烟花爆破的位置 { x:number, y:number }
+ * @param color 烟花初始上升的颜色，默认 '#fff'
+ * @param radiu 烟花半径
+ */
+var Boom = function(boomArea, color, radiu) {
+  // 烟花粒子
+  this.booms = [];
+  // 烟花初始位置 x 轴
+  this.x = getRandom(canvas.width / 3, canvas.width * 2 / 3);
+  // 烟花初始位置 y 轴
+  this.y = boomStartHeight;
+  // 烟花未爆破前颜色
+  this.color = color == null ? '#fff' : color;
+  // 移动到爆破的范围
+  this.boomArea = boomArea;
+  // 烟花是否已经爆破
+  this.dead = false;
+  // 烟花爆破的点
+  this.ba = parseInt(getRandom(40, 220));
+};
+
+Boom.prototype = {
+  // 点燃
+  start: function() {
+    ctx.save();
+    ctx.beginPath();
+    // ctx.arc(this.x, this.y, this.radiu, 0, 2 * Math.PI);
+    ctx.arc(this.x, this.y, 1, 0, 2 * Math.PI);
+    ctx.fillStyle = this.color;
+    ctx.fill();
+    ctx.restore();
+  },
+  // 上升
+  move: function() {
+    var dx = this.boomArea.x - this.x;
+    var dy = this.boomArea.y - this.y;
+    this.x = this.x + dx * 0.01;
+    this.y = this.y + dy * 0.01;
+
+    if (Math.abs(dx) <= this.ba && Math.abs(dy) <= this.ba) {
+      this.boom();
+      this.dead = true;
+    } else {
+      this.start();
+    }
+  },
+  // 普通烟花
+  boom: function() {
+    // 爆破范围
+    var fanwei = parseInt(getRandom(boomWidth, boomHeight));
+    // 生成 fragNum 个烟花粒子
+    var fragNum = getRandom(30, 120);
+    // 是否多彩烟花
+    var style = getRandom(0, 10) >= 4 ? 1 : 2;
+    // 单个烟花颜色
+    var color = {
+      a: parseInt(getRandom(128, 255)),
+      b: parseInt(getRandom(128, 255)),
+      c: parseInt(getRandom(128, 255))
+    };
+
+    // 每个粒子独立特性
+    for (var i = 0; i < fragNum; i++) {
+      // 多彩烟花重定义颜色
+      if (style === 2) {
+        color = {
+          a: parseInt(getRandom(128, 255)),
+          b: parseInt(getRandom(128, 255)),
+          c: parseInt(getRandom(128, 255))
+        };
+      }
+      // 粒子行驶范围
+      var a = getRandom(-Math.PI, Math.PI);
+      var x = getRandom(0, fanwei) * Math.cos(a) + this.x;
+      var y = getRandom(0, fanwei) * Math.sin(a) + this.y;
+      // 创建粒子
+      var frag = new Frag(this.x, this.y, color, x, y);
+      this.booms.push(frag);
+    }
+  }
+};
+
+/**
+ * 烟花爆破
+ * @param centerX 爆破中心 x 
+ * @param centerY 爆破中心 y
+ * @param color 烟花粒子颜色
+ */
+var Frag = function(centerX, centerY, color, tx, ty) {
+  this.tx = tx;
+  this.ty = ty;
+  this.x = centerX;
+  this.y = centerY;
+  this.dead = false;
+  this.centerX = centerX;
+  this.centerY = centerY;
+  this.color = color;
+};
+
+Frag.prototype = {
+  paint: function() {
+    ctx.save();
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, .6, 0, 2 * Math.PI);
+    ctx.fillStyle = 'rgba(' + this.color.a + ',' + this.color.b + ',' + this.color.c + ',1)';
+    ctx.fill();
+    ctx.restore();
+  },
+  /**
+   * 爆破移动
+   * @param end number 尾部长度，默认 0.3
+   */
+  moveTo: function(end) {
+    // 爆破烟花尾部
+    this.ty = this.ty + (end == null ? 0.3 : end);
+    var dx = this.tx - this.x;
+    var dy = this.ty - this.y;
+    this.x = Math.abs(dx) < 0.1 ? this.tx : (this.x + dx * 0.1);
+    this.y = Math.abs(dy) < 0.1 ? this.ty : (this.y + dy * 0.1);
+    if (dx === 0 && Math.abs(dy) <= 80) {
+      this.dead = true;
+    }
+    this.paint();
+  }
+};
+
+/**
+ * 获取 b 至 a 的随机数
+ * @param a int
+ * @param b int
+ * @return min(a,b) < x < max(a,b)
+ */
+function getRandom(a, b) {
+  return Math.random() * (b - a) + a;
+};
+</script>
+
+</html>
